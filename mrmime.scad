@@ -123,8 +123,42 @@ module hand2(){
 }
 //hand();
 
+ module prism(l, w, h){
+     color([0,0,0.6])
+       polyhedron(
+               points=[[0,0,0], [l,0,0], [l,w,0], [0,w,0], [0,w,h], [l,w,h]],
+               faces=[[0,1,2,3],[5,4,3,2],[0,4,5,1],[0,3,4],[5,2,1]]
+               );}
 
+
+module ear(){
+    translate([5, 3, 0.5]) 
+    rotate(a=90, v=[0, 0, 1])
+    rotate(a=180, v=[0, 1, 0])
+    prism(3, 5, 3);
+    rotate(a=90, v=[0, 0, 1])
+    rotate(a=90, v=[1, 0, 0])
+    prism(3, 2.5, 10);
+    translate([0, 0, -4.5]) 
+    rotate(a=90, v=[0, 0, 1])
+    rotate(a=90, v=[1, 0, 0])
+    prism(3, 2.5, 3);
+}
+//ear();
 hand2();
 translate([-10,0, 0])
 mirror([1, 0, 0])
 hand2();
+module head(){
+    for (a =[0.1:0.05:2])
+    translate([0,0,a])
+    sphere(r=5 -(a/3));
+    translate([3,2,0])
+    sphere(r=2);
+    rotate(a=180, v= [0 ,1,0])
+    translate([3,2,0])
+    sphere(r=2);
+}
+translate([3,0,0])
+ear();
+//head();

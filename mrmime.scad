@@ -1,22 +1,6 @@
 $fn= 50;
-//sphere(r=3);
-module hand(){
-    cylinder(r=2,h=0.5, center=true);
-    
-    module palm(){
-        difference(){
-            translate([0 ,0 , -1.5])
-            sphere(r=2.5);
-            translate([0 ,0 , -2.5])
-            cylinder(r=2.5,h=5,     center=true);
-        }
-    }
-  
-    palm();
-    
-}
 
-//hand();
+
 module hand2(){
    module fingers(){
     $fn= 10;
@@ -105,17 +89,21 @@ module hand2(){
 
         rotate(a=100, v=[1,0,0])
         //cone circle base
+        color([1,1,1])
         cylinder(2,1.3,0.4, center=true, $fn=100);
     }
     rotate(a=20, v=[1, 0, 0])
     handaux();
     translate([1.4, -5.6, -4.8])
     rotate(a=120, v=[1,0,0])
+    color([1,0.6,0.4])
     cylinder(r= 0.5, h= 10 ,center=true);
     translate([1.4,-13, -4.7])
     rotate(a=42, v=[1,0,0])
+    color([1,0.6,0.4])
     cylinder(r= 0.5, h= 7,center=true);
     translate([1.4,-10.3, -7.5 ])
+    color([1,0.6,0.4])
     sphere(r=0.7);
     translate([1.4,-16, - 1])
     color([1,0,0])
@@ -138,11 +126,17 @@ module ear(){
     prism(3, 5, 3);
     rotate(a=90, v=[0, 0, 1])
     rotate(a=90, v=[1, 0, 0])
-    prism(3, 2.5, 10);
+    prism(3, 2.5, 8);
     translate([0, 0, -4.5]) 
     rotate(a=90, v=[0, 0, 1])
     rotate(a=90, v=[1, 0, 0])
     prism(3, 2.5, 3);
+    translate([0, 0, -5.5])
+    color([0,0,0.6])
+    cube([1,3,2]);
+    translate([-1, 0, -4.5])
+    color([0,0,0.6])
+    cube([2,3,7]);
 }
 //ear();
 hand2();
@@ -152,13 +146,36 @@ hand2();
 module head(){
     for (a =[0.1:0.05:2])
     translate([0,0,a])
+    color([1,0.6,0.4])
     sphere(r=5 -(a/3));
     translate([3,2,0])
+    color([1, 0, 0])
     sphere(r=2);
     rotate(a=180, v= [0 ,1,0])
     translate([3,2,0])
+    color([1, 0, 0])
     sphere(r=2);
+    
+    module earaux(){
+        rotate(a=-20, v= [0, 0, 1])
+        translate([6,-1,7])
+        rotate(a= 50, v= [0, 1, 0])
+        scale([0.9,0.9,0.9])
+        ear();
+        }
+    earaux();
+    mirror([1 , 0, 0])
+    earaux();
 }
-translate([3,0,0])
-ear();
-//head();
+
+module body()
+{
+    for (a =[0.1:0.05:4])    
+     translate([0,0,a])
+     color([1,1,1])
+     sphere(r=6.5);
+}
+translate([-5, -17 ,-7.5])
+body();
+translate([-5, -17 ,5])
+head();

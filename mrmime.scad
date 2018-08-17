@@ -144,13 +144,25 @@ module head(){
     translate([0,0,a])
     color([1,0.6,0.4])
     sphere(r=5 -(a/3));
-    translate([3,2,0])
+    translate([3.3,2.5,0])
     color([1, 0, 0])
     sphere(r=2);
     rotate(a=180, v= [0 ,1,0])
-    translate([3,2,0])
+    translate([3.3,2.5,0])
     color([1, 0, 0])
     sphere(r=2);
+    
+    module cheeks(){
+        translate([3,2,0])
+        color([1,0.6,0.4])
+        sphere(r=2.5);
+        rotate(a=180, v= [0 ,1,0])
+        translate([3,2,0])
+        color([1,0.6,0.4])
+        sphere(r=2.5);
+    
+        }
+    cheeks();
     
     module earaux(){
         rotate(a=-20, v= [0, 0, 1])
@@ -173,14 +185,16 @@ module body()
      sphere(r=6.3);
     }
     module body_aux(){
-        for ( a =[0.1:0.005:2])
+        for ( a =[0:0.2:1])
         translate([a,0,0])
         body1();
             
             
     }
+    translate([0.5, 4,1])
+    color([1,0,0])
+    sphere(r=4);
     body_aux();
-    
 }
 
 module shoe(){
@@ -225,23 +239,52 @@ module leg(){
     shoe();
 }
 
+module ellipsoid(diameter, width, height) {
+    linear_extrude(height = height, scale = [width/diameter,1]) circle(d = diameter); 
+  }
+  
+module eye(){
+   module eye_aux(){
+        for ( a =[0:0.1:0.5])
+        translate([0,0,a])
+        sphere(r=0.7); 
+    }
+    module eye1(){
+        translate([-7 ,-13 ,7])
+        rotate(a=30, v= [1 ,0, 0])
+        color([1, 1, 1])
+        eye_aux();
+        color([0, 0, 0])
+         translate([-7 ,-12.5 ,7.3])
+        sphere(r=0.4);
+        }
+        
+   eye1();
+   translate([-11 ,0 ,0])
+   mirror([1, 0,0])
+   eye1();
+
+}
+eye();
+
 module figure(){
     //body
-    translate([-5, -18 ,-7])
+    translate([-6, -18 ,-7])
     body();
     //head
-    translate([-5, -17 ,5])
+    translate([-5.5, -17 ,5])
+    scale([1.1, 1.1, 1.1])
     head();
     //hands
     scale([1.2, 1.2, 1.2])
     hand2();
-    translate([-10,0, 0])
+    translate([-11,0, 0])
     mirror([1, 0, 0])
     scale([1.2, 1.2, 1.2])
     hand2();
     //legs
     leg();
-    translate([-10, 0, 0])
+    translate([-11, 0, 0])
     mirror([1,0 ,0])
     leg();
 } 

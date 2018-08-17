@@ -107,7 +107,7 @@ module hand2(){
     sphere(r=0.7);
     translate([1.4,-16, - 1])
     color([1,0,0])
-    sphere(r=2.3);
+    sphere(r=2.5);
 }
 //hand();
 
@@ -139,9 +139,12 @@ module ear(){
     cube([2,3,7]);
 }
 //ear();
+scale([1.2, 1.2, 1.2])
 hand2();
+
 translate([-10,0, 0])
 mirror([1, 0, 0])
+scale([1.2, 1.2, 1.2])
 hand2();
 module head(){
     for (a =[0.1:0.05:2])
@@ -170,12 +173,54 @@ module head(){
 
 module body()
 {
-    for (a =[0.1:0.05:4])    
+    for (a =[0.1:0.05:3.5])    
      translate([0,0,a])
      color([1,1,1])
-     sphere(r=6.5);
+     sphere(r=6.3);
 }
-translate([-5, -17 ,-7.5])
+
+module shoe(){
+    color([0,0,0.6])
+    translate([0, 5, 0])
+    cube([3,7 ,2]);
+    prism(3, 5, 2);
+    translate([0, 2, -3])
+    rotate(a=90, v= [1, 0, 0])
+    prism(3, 3, 2);
+    translate([3 ,4, -3])
+    rotate(a=180, v= [0, 0, 1])
+    prism(3, 2, 1);
+ 
+    //leg
+    
+    translate([0, 13, -13])
+    color([1,0,0])
+    sphere(r=2.5);
+    translate([1, 13, -12])
+    rotate(a = 50, v= [1, 0, 0])
+    color([1,0.6,0.4])
+    cylinder(r=1, h=8);
+    translate([1, 6, -6])
+    rotate(a = -40, v= [1, 0, 0])
+    color([1,0.6,0.4])
+    cylinder(r=1, h=8);
+    
+    translate([1, 6, -6.5])
+    color([1, 1, 1])
+    sphere(r=1.5);
+}
+translate([-5, -17 ,-7])
 body();
 translate([-5, -17 ,5])
 head();
+module leg(){
+    translate([7, -12 ,-23])
+    rotate(a=-50, v=[0, 0, 1])
+    rotate(a=180, v=[1, 0, 0])
+    scale([0.8,0.8, 0.8])
+    shoe();
+}
+leg();
+translate([-10, 0, 0])
+mirror([1,0 ,0])
+leg();

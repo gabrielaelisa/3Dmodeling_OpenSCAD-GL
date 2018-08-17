@@ -64,7 +64,7 @@ module hand2(){
     color([1,1,1])
     cube([0.4, 0.3, 2], center=true);
 }
-   module palm(){
+module palm(){
    color([1,1,1])
    rotate(a=180, v=[1,0,0])
    intersection(){
@@ -138,14 +138,7 @@ module ear(){
     color([0,0,0.6])
     cube([2,3,7]);
 }
-//ear();
-scale([1.2, 1.2, 1.2])
-hand2();
 
-translate([-10,0, 0])
-mirror([1, 0, 0])
-scale([1.2, 1.2, 1.2])
-hand2();
 module head(){
     for (a =[0.1:0.05:2])
     translate([0,0,a])
@@ -173,10 +166,21 @@ module head(){
 
 module body()
 {
+   module body1(){
     for (a =[0.1:0.05:3.5])    
      translate([0,0,a])
      color([1,1,1])
      sphere(r=6.3);
+    }
+    module body_aux(){
+        for ( a =[0.1:0.005:2])
+        translate([a,0,0])
+        body1();
+            
+            
+    }
+    body_aux();
+    
 }
 
 module shoe(){
@@ -190,6 +194,9 @@ module shoe(){
     translate([3 ,4, -3])
     rotate(a=180, v= [0, 0, 1])
     prism(3, 2, 1);
+    translate([0,10.5,-0.7])
+    color([0,0,0.6])
+    cube([3,2 ,2.7]);
  
     //leg
     
@@ -209,10 +216,7 @@ module shoe(){
     color([1, 1, 1])
     sphere(r=1.5);
 }
-translate([-5, -17 ,-7])
-body();
-translate([-5, -17 ,5])
-head();
+
 module leg(){
     translate([7, -12 ,-23])
     rotate(a=-50, v=[0, 0, 1])
@@ -220,7 +224,26 @@ module leg(){
     scale([0.8,0.8, 0.8])
     shoe();
 }
-leg();
-translate([-10, 0, 0])
-mirror([1,0 ,0])
-leg();
+
+module figure(){
+    //body
+    translate([-5, -18 ,-7])
+    body();
+    //head
+    translate([-5, -17 ,5])
+    head();
+    //hands
+    scale([1.2, 1.2, 1.2])
+    hand2();
+    translate([-10,0, 0])
+    mirror([1, 0, 0])
+    scale([1.2, 1.2, 1.2])
+    hand2();
+    //legs
+    leg();
+    translate([-10, 0, 0])
+    mirror([1,0 ,0])
+    leg();
+} 
+scale([1, 1 , 0.85])
+figure();

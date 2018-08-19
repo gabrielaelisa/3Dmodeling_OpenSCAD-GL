@@ -92,12 +92,13 @@ module palm(){
         color([1,1,1])
         cylinder(2,1.3,0.4, center=true, $fn=100);
     }
+    translate([0, -2, -1.2])
     rotate(a=20, v=[1, 0, 0])
     handaux();
-    translate([1.4, -5.6, -4.8])
+    translate([1.4, -6.5, -5.3])
     rotate(a=120, v=[1,0,0])
     color([1,0.6,0.4])
-    cylinder(r= 0.5, h= 10 ,center=true);
+    cylinder(r= 0.5, h= 8 ,center=true);
     translate([1.4,-13, -4.7])
     rotate(a=42, v=[1,0,0])
     color([1,0.6,0.4])
@@ -144,22 +145,22 @@ module head(){
     translate([0,0,a])
     color([1,0.6,0.4])
     sphere(r=5 -(a/3));
-    translate([3.3,2.5,0])
+    translate([3.3,1.8,0])
     color([1, 0, 0])
-    sphere(r=2);
+    sphere(r=2.1);
     rotate(a=180, v= [0 ,1,0])
-    translate([3.3,2.5,0])
+    translate([3.3,1.8,0])
     color([1, 0, 0])
-    sphere(r=2);
+    sphere(r=2.1);
     
     module cheeks(){
-        translate([3,2,0])
+        translate([2.5,1,0])
         color([1,0.6,0.4])
-        sphere(r=2.5);
+        sphere(r=3);
         rotate(a=180, v= [0 ,1,0])
-        translate([3,2,0])
+        translate([2.5,1,0])
         color([1,0.6,0.4])
-        sphere(r=2.5);
+        sphere(r=3);
     
         }
     cheeks();

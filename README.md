@@ -1,4 +1,4 @@
-# Modelamiento De Pókemons en 3D con Sowftware OpenSCAD y librería Opengl
+# Modelamiento De Pókemons en 3D con Software OpenSCAD y librería Opengl
 En esta entrega se desea aplicar los conocimientos aprendidos en las 
 clases de modelamiento 3D e iluminación, para generar figuras 
 imprimibles de distintos personajes de la serie y juego de cartas 
